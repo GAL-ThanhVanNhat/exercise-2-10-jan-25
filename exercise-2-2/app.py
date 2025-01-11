@@ -1,6 +1,7 @@
+CONNECTION_STRING = "sqlite:///project.db"
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from shared.constant import FIRSTNAME, POST_METHOD, GET_METHOD, CONNECTION_STRING, LASTNAME, SALARY, ADDRESS
+from shared.constant import FIRSTNAME, POST_METHOD, GET_METHOD, LASTNAME, SALARY, ADDRESS
 
 app = Flask(__name__)
 
@@ -73,7 +74,6 @@ def update(id: int):
         doctor.salary = request.form[SALARY]
         doctor.address = request.form[ADDRESS]
         try:
-            #db.session.update(doctor)
             db.session.commit()
             return redirect('/')
         except Exception as e:
