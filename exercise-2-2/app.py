@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from shared.constant import POST_METHOD, GET_METHOD, CONNECTION_STRING, PUT_METHOD
+from shared.constant import FIRSTNAME, POST_METHOD, GET_METHOD, CONNECTION_STRING, LASTNAME, SALARY, ADDRESS
 
 app = Flask(__name__)
 
@@ -30,10 +30,10 @@ class Doctor(db.Model):
 def index():
     # add doctor
     if request.method == POST_METHOD: 
-        firstName = request.form["firstName"]
-        lastName = request.form["lastName"]
-        salary = request.form["salary"]
-        address = request.form["address"]
+        firstName = request.form[FIRSTNAME]
+        lastName = request.form[LASTNAME]
+        salary = request.form[SALARY]
+        address = request.form[ADDRESS]
         doctor = Doctor(firstName, lastName, salary , address)
         try:
             db.session.add(doctor)
@@ -68,10 +68,10 @@ def delete(id: int):
 def update(id: int):
     doctor : Doctor = Doctor.query.get_or_404(id)
     if request.method == POST_METHOD:
-        doctor.firstName = request.form["firstName"]
-        doctor.lastName = request.form["lastName"]
-        doctor.salary = request.form["salary"]
-        doctor.address = request.form["address"]
+        doctor.firstName = request.form[FIRSTNAME]
+        doctor.lastName = request.form[LASTNAME]
+        doctor.salary = request.form[SALARY]
+        doctor.address = request.form[ADDRESS]
         try:
             #db.session.update(doctor)
             db.session.commit()
