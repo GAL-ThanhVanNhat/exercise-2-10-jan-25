@@ -1,0 +1,43 @@
+{% extends "base.html" %} {%block head%}
+<title>Exercise 2.2</title>
+{%endblock%} {%block body%}
+<div class="content">
+  <h1>Doctors</h1>
+
+  {% if doctors | length < 1%}
+    <p>No doctors found</p>
+    {% else %}
+  <table>
+    <tr>
+      <th width= "10%">Full Name</th>
+      <th width= "10%">Salary</th>
+      <th width= "10%">Address</th>
+      <th width= "10%">Created Date</th>
+      <th width= "10%">Action</th>
+    </tr>
+    {% for doctor in doctors %}
+        <tr>
+            <td width= "10%">{{doctor.firstName + " " + doctor.lastName}}</td>
+            <td width= "10%">{{doctor.salary}}</td>
+            <td width= "10%">{{doctor.address}}</td>
+            <td width= "10%">{{doctor.createdDate.strftime("%Y-%m-%d")}}</td>
+            <td width= "10%">
+                <a href="/delete/{{doctor.id}}">Delete</a>
+                <br>
+                <a href="/update/{{doctor.id}}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+<br>
+  <form action="/" method="POST">
+    <input type="text" placeholder="First Name" name="firstName" />
+    <input type="text" placeholder="Last Name" name="lastName" />
+    <input type="number" placeholder="Salary" name="salary" />
+    <input type="text" placeholder="Address" name="address" />
+
+    <input id="btn_add" value= "Add Doctor" type="submit"></input>
+  </form>
+</div>
+{%endblock%}
