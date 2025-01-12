@@ -11,9 +11,9 @@ for doctor in doctors:
 secondDoctor: Doctor = doctors[1]
 secondDoctorId: int = secondDoctor[0]
 
-Doctor.update_doctor_first_lastname(secondDoctorId, "test_1", "demo_1")
-Doctor.update_doctor_salary(secondDoctorId, 123)
-Doctor.update_doctor_address(secondDoctorId, "456 primary St")
+Doctor.update_doctor_first_lastname(secondDoctorId, "test_Demo_2", "test_Demo_2")
+Doctor.update_doctor_salary(secondDoctorId, 456789)
+Doctor.update_doctor_address(secondDoctorId, "HCM Vietnam")
 print(secondDoctor.__repr__())
 
 dbSecondDoctor = Doctor.get_doctor_by_id(secondDoctorId)
